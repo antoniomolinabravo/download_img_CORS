@@ -1,0 +1,111 @@
+https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
+https://smallpdf.com/es/webp-a-pdf
+
+<script>
+function download(url, name) {
+const a = document.createElement("a");
+document.body.appendChild(a);
+a.textContent = "Download " + name;
+a.download = name;
+a.target = '_blank';
+a.style.display = 'block'; //'none';
+a.href= url;
+a.click();
+}
+
+
+
+function _download(url, name) {
+//  let imageURL =
+    "https://cdn.glitch.com/4c9ebeb9-8b9a-4adc-ad0a-238d9ae00bb5%2Fmdn_logo-only_color.svg?1535749917189";
+//  let imageDescription = "The Mozilla logo";
+
+  downloadedImg = new Image();
+  downloadedImg.crossOrigin = "anonymous";
+  downloadedImg.addEventListener("load", imageReceived, false);
+//  downloadedImg.alt = imageDescription;
+  document.body.appendChild(downloadedImg);
+
+  downloadedImg.src = url;
+}
+
+function imageReceived() {
+}
+
+function _imageReceived() {
+//  const canvas = document.createElement("canvas");
+//  const context = canvas.getContext("2d");
+
+  canvas.width = downloadedImg.width;
+  canvas.height = downloadedImg.height;
+//  canvas.innerText = downloadedImg.alt;
+
+  context.drawImage(downloadedImg, 0, 0);
+//  document.body.appendChild(canvas);
+
+/*
+canvas.toBlob(
+  blobCallback(name),
+  "image/vnd.microsoft.icon",
+  "-moz-parse-options:format=bmp;bpp=32",
+);
+*/
+
+  try {
+//    localStorage.setItem("saved-image-example", canvas.toDataURL("image/png"));
+  } catch (err) {
+//    console.error(`Error: ${err}`);
+  }
+}
+
+function blobCallback(name) {
+  return (b) => {
+//    const a = document.createElement("a");
+    a.textContent = "Download";
+//    document.body.appendChild(a);
+    a.style.display = "block";
+    a.download = `${name}`.png;
+    a.href = window.URL.createObjectURL(b);
+    a.click();
+  };
+}
+
+
+/*
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+
+  //const downloadedImg = new Image();
+
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  document.body.appendChild(canvas);
+*/
+
+// https://image.slidesharecdn.com/problemas-resueltos-newton-110805201603-phpapp01/75/problemas-resueltosnewton-99-2048.jpg
+// var url=['a.jpg', 'b.jpg'], name['d.png', 'e.png'];
+var urls=[], names=[];
+var base="https://image.slidesharecdn.com/problemas-resueltos-newton-110805201603-phpapp01/75/problemas-resueltosnewton-";
+var pos = "-2048";
+var ext = ".jpg";
+var nom = "fisica-";
+ini = 1;
+for(let j=ini; j<=ini+9; j++){
+  urls.push(base+j+pos+ext);
+  names.push(nom+j+ext);
+  download(urls[j-ini], names[j-ini]);
+  console.log(urls[j-ini], names[j-ini]);
+}
+
+//console.log(urls, names);
+//var i=0;
+//download(urls[i], names[i]);
+
+//download("https://i0.wp.com/www.sdsd.com/wp-content/uploads/2020/01/mobile-2.png", "archivo1.png");
+
+
+
+//startDownload();
+
+
+</script>
